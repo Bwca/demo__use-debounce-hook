@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import { Greeter } from "./Greeter";
+
+export function App(): JSX.Element {
+    const [isGreeterVisible, setIsGreeterVisible] = useState(true);
+    const toggleGreeter = () => setIsGreeterVisible((prev) => !prev);
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <button style={{ position: "absolute", top: '20vh' }} onClick={toggleGreeter}>
+                    toggle greeter
+                </button>
+                <br />
+                {isGreeterVisible && <Greeter />}
+            </header>
+        </div>
+    );
 }
-
-export default App;
